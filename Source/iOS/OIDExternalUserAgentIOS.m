@@ -19,7 +19,6 @@
 #import "OIDExternalUserAgentIOS.h"
 
 #import <SafariServices/SafariServices.h>
-#import <AuthenticationServices/AuthenticationServices.h>
 
 #import "OIDErrorUtilities.h"
 #import "OIDExternalUserAgentSession.h"
@@ -50,7 +49,6 @@ static id<OIDSafariViewControllerFactory> __nullable gSafariViewControllerFactor
 #pragma clang diagnostic ignored "-Wpartial-availability"
   __weak SFSafariViewController *_safariVC;
   SFAuthenticationSession *_authenticationVC;
-  ASWebAuthenticationSession *_webAuthenticationVC;
 #pragma clang diagnostic pop
 }
 
@@ -90,34 +88,7 @@ static id<OIDSafariViewControllerFactory> __nullable gSafariViewControllerFactor
   BOOL openedSafari = NO;
   NSURL *requestURL = [request externalUserAgentRequestURL];
 
-  // iOS 12 and later, use ASWebAuthenticationSession
-  if (@available(iOS 12.0, *)) {
-    __weak OIDExternalUserAgentIOS *weakSelf = self;
-    NSString *redirectScheme = request.redirectScheme;
-    ASWebAuthenticationSession *authenticationVC =
-        [[ASWebAuthenticationSession alloc] initWithURL:requestURL
-                                      callbackURLScheme:redirectScheme
-                                       completionHandler:^(NSURL * _Nullable callbackURL,
-                                                           NSError * _Nullable error) {
-      __strong OIDExternalUserAgentIOS *strongSelf = weakSelf;
-      if (!strongSelf) {
-          return;
-      }
-      strongSelf->_webAuthenticationVC = nil;
-      if (callbackURL) {
-        [strongSelf->_session resumeExternalUserAgentFlowWithURL:callbackURL];
-      } else {
-        NSError *safariError =
-            [OIDErrorUtilities errorWithCode:OIDErrorCodeUserCanceledAuthorizationFlow
-                             underlyingError:error
-                                 description:nil];
-        [strongSelf->_session failExternalUserAgentFlowWithError:safariError];
-      }
-    }];
-    _webAuthenticationVC = authenticationVC;
-    openedSafari = [authenticationVC start];
-  // iOS 11, use SFAuthenticationSession
-  } else if (@available(iOS 11.0, *)) {
+  if (@available(iOS 11.0, *)) {
     __weak OIDExternalUserAgentIOS *weakSelf = self;
     NSString *redirectScheme = request.redirectScheme;
     SFAuthenticationSession *authenticationVC =
