@@ -11,7 +11,7 @@
 		0646249E205F026300072191 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0646249D205F026300072191 /* TodayViewController.swift */; };
 		064624A1205F026300072191 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0646249F205F026300072191 /* MainInterface.storyboard */; };
 		064624A5205F026300072191 /* Example_Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 06462499205F026300072191 /* Example_Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		064624AC205F02FA00072191 /* AppAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F265BD91F9AE50400DC14BF /* AppAuth.framework */; };
+		06A3B86A21A37AC800F1AC47 /* AppAuthCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A3B86921A37AC800F1AC47 /* AppAuthCore.framework */; };
 		9F265BD11F9AC69300DC14BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F265BC91F9AC69300DC14BF /* Assets.xcassets */; };
 		9F265BD31F9AC69300DC14BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F265BCB1F9AC69300DC14BF /* LaunchScreen.storyboard */; };
 		9F265BD41F9AC69300DC14BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F265BCD1F9AC69300DC14BF /* Main.storyboard */; };
@@ -52,6 +52,7 @@
 		064624A2205F026300072191 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		064624AD205F034A00072191 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
 		064624AE205F035D00072191 /* Example_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_Extension.entitlements; sourceTree = "<group>"; };
+		06A3B86921A37AC800F1AC47 /* AppAuthCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppAuthCore.framework; path = Carthage/Build/iOS/AppAuthCore.framework; sourceTree = "<group>"; };
 		9F265B971F9AC5D600DC14BF /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F265BC91F9AC69300DC14BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F265BCC1F9AC69300DC14BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -67,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				064624AC205F02FA00072191 /* AppAuth.framework in Frameworks */,
+				06A3B86A21A37AC800F1AC47 /* AppAuthCore.framework in Frameworks */,
 				0646249B205F026300072191 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,6 +131,7 @@
 		9F265BD81F9AE4CA00DC14BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06A3B86921A37AC800F1AC47 /* AppAuthCore.framework */,
 				9F265BD91F9AE50400DC14BF /* AppAuth.framework */,
 				0646249A205F026300072191 /* NotificationCenter.framework */,
 			);
@@ -146,6 +148,7 @@
 				06462495205F026300072191 /* Sources */,
 				06462496205F026300072191 /* Frameworks */,
 				06462497205F026300072191 /* Resources */,
+				06A3B86B21A37AD700F1AC47 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -163,7 +166,7 @@
 				9F265B931F9AC5D600DC14BF /* Sources */,
 				9F265B941F9AC5D600DC14BF /* Frameworks */,
 				9F265B951F9AC5D600DC14BF /* Resources */,
-				9F265BDB1F9AE52C00DC14BF /* ShellScript */,
+				9F265BDB1F9AE52C00DC14BF /* Carthage */,
 				064624A9205F026300072191 /* Embed App Extensions */,
 			);
 			buildRules = (
@@ -247,7 +250,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9F265BDB1F9AE52C00DC14BF /* ShellScript */ = {
+		06A3B86B21A37AD700F1AC47 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/AppAuthCore.framework",
+			);
+			name = Carthage;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		9F265BDB1F9AE52C00DC14BF /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -255,11 +277,12 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/AppAuth.framework",
 			);
+			name = Carthage;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

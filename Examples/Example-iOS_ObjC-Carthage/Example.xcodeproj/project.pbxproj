@@ -11,7 +11,7 @@
 		0646245B205ED68000072191 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0646245A205ED68000072191 /* TodayViewController.m */; };
 		0646245E205ED68000072191 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0646245C205ED68000072191 /* MainInterface.storyboard */; };
 		06462463205ED68000072191 /* Example_Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 06462455205ED68000072191 /* Example_Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		0646246A205EE25800072191 /* AppAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FEA25241E75C17E00C2D71B /* AppAuth.framework */; };
+		06A3B86721A3788F00F1AC47 /* AppAuthCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A3B86621A3788F00F1AC47 /* AppAuthCore.framework */; };
 		346E916E1C29D42800D3620B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 346E916D1C29D42800D3620B /* main.m */; };
 		346E91711C29D42800D3620B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 346E91701C29D42800D3620B /* AppDelegate.m */; };
 		346E91791C29D42800D3620B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 346E91781C29D42800D3620B /* Assets.xcassets */; };
@@ -55,6 +55,7 @@
 		0646245F205ED68000072191 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		06462467205EDB5400072191 /* Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example.entitlements; sourceTree = "<group>"; };
 		06462468205EDB9900072191 /* Example_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Example_Extension.entitlements; sourceTree = "<group>"; };
+		06A3B86621A3788F00F1AC47 /* AppAuthCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppAuthCore.framework; path = Carthage/Build/iOS/AppAuthCore.framework; sourceTree = "<group>"; };
 		346E91691C29D42800D3620B /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		346E916D1C29D42800D3620B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		346E916F1C29D42800D3620B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -74,8 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A3B86721A3788F00F1AC47 /* AppAuthCore.framework in Frameworks */,
 				06462457205ED68000072191 /* NotificationCenter.framework in Frameworks */,
-				0646246A205EE25800072191 /* AppAuth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +107,7 @@
 		341564001C487ABA00ECA3D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06A3B86621A3788F00F1AC47 /* AppAuthCore.framework */,
 				5FEA25241E75C17E00C2D71B /* AppAuth.framework */,
 				346E91981C2A245000D3620B /* SafariServices.framework */,
 				06462456205ED68000072191 /* NotificationCenter.framework */,
@@ -159,6 +161,7 @@
 				06462451205ED68000072191 /* Sources */,
 				06462452205ED68000072191 /* Frameworks */,
 				06462453205ED68000072191 /* Resources */,
+				06A3B86821A378AA00F1AC47 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -258,6 +261,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		06A3B86821A378AA00F1AC47 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/AppAuthCore.framework",
+			);
+			name = Carthage;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
 		5FEA25261E75C1CF00C2D71B /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -271,7 +293,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
